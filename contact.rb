@@ -28,7 +28,6 @@ class Contact
     @@contacts
   end
 
-
   # a getter (*get* the value of an attribute)
   def email
     @email
@@ -80,20 +79,51 @@ class Contact
 
   # This method should accept an id as an argument
   # and return the contact who has that id
-  def self.find(person)
+  def self.find(ider)
     @@contacts.each do |contacter|
-      if contacter.id == person.id
+      if contacter.id == ider
         return contacter
       end
     end
   end
+
+
+  # def self.changer(ider, attrib, new_value)
+  #   if attrib == 'first_name'
+  #     @@contacts.each do |contacter|
+  #       if contacter.id == ider
+  #         contacter.first_name = new_value
+  #       end
+  #     end
+  #   elsif attrib == 'last_name'
+  #     @@contacts.each do |contacter|
+  #       if contacter.id == ider
+  #         contacter.last_name = new_value
+  #       end
+  #     end
+  #   elsif attrib == 'email'
+  #       @@contacts.each do |contacter|
+  #         if contacter.id == ider
+  #           contacter.email = new_value
+  #         end
+  #       end
+  #   elsif attrib == 'note'
+  #       @@contacts.each do |contacter|
+  #         if contacter.id == ider
+  #           contacter.note = new_value
+  #         end
+  #       end
+  #
+  #   end
+  # end
+
+
 
   # This method should allow you to specify
   # 1. which of the contact's attributes you want to update
   # 2. the new value for that attribute
   # and then make the appropriate change to the contact
   def self.update(person)
-    puts person.first_name
     puts "Input attribute you'd like to change"
     puts "1 for first name"
     puts "2 for last name"
@@ -157,8 +187,8 @@ class Contact
 
   # This method should delete the contact
   # HINT: Check the Array class docs for built-in methods that might be useful here
-  def self.delete_em(deleter)
-    @@contacts.delete(deleter)
+  def self.delete_em(target)
+    @@contacts.delete(target)
   end
 
   # Feel free to add other methods here, if you need them.
@@ -170,29 +200,38 @@ end
 
 
 betty = Contact.create('Betty', 'Maker', 'bettymakes@gmail.com', 'Loves Pokemon')
-
 johnny = Contact.create('Johnny', 'Jamstead', 'jjamstead@gmail.com', 'Hates Pokemon')
 ronk = Contact.create('Ronk', 'Blaster', 'ronkronk@yahoo.com', 'Is a Pokemon')
+
+# Contact.changer(2, 'first_name', 'Blur')
+puts Contact.all[1]
+
 
 # How can I get contact's email?
 # Then how can I change contact's note to 'Loves HTML & CSS'?
 
-puts Contact.all.inspect
-
-
-puts '*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*'
+# puts Contact.all.inspect
+#
+#
+# puts '*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*'
 puts Contact.update(ronk)
+puts ronk.inspect
 
-puts betty.email # => 'bettymakes@gmail.com'
-betty.note = 'Loves HTML & CSS'
-puts Contact.all.inspect
+guy = Contact.find(3)
 
-Contact.update(contact)
-puts "$~$~$~$~$~$~$~$~$~$~$~$~$~$~$~$~$"
-puts Contact.find_by.inspect
-puts "$~$~$~$~$~$~$~$~$~$~$~$~$~$~$~$~$"
-
-Contact.delete_em(johnny)
-puts Contact.all.inspect
-Contact.delete_all
-puts Contact.all.inspect
+Contact.update(guy)
+puts ronk.inspect
+#
+# puts betty.email # => 'bettymakes@gmail.com'
+# betty.note = 'Loves HTML & CSS'
+# puts Contact.all.inspect
+#
+# Contact.update(contact)
+# puts "$~$~$~$~$~$~$~$~$~$~$~$~$~$~$~$~$"
+# puts Contact.find_by.inspect
+# puts "$~$~$~$~$~$~$~$~$~$~$~$~$~$~$~$~$"
+#
+# Contact.delete_em(johnny)
+# puts Contact.all.inspect
+# Contact.delete_all
+# puts Contact.all.inspect
