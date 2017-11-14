@@ -4,6 +4,7 @@ class CRM
 
   def initialize(name)
     @name = name # this is how the variable naming is normally done BTW
+    main_menu
   end
 
   def what_is_the_name_of_this_CRM_again
@@ -25,10 +26,10 @@ class CRM
       puts '[4] Display all the contacts'
       puts '[5] Search by attribute'
       puts '[6] Exit'
-      puts 'Enter a number: '
+      print 'Enter a number: '
   end
 
-  def call_option
+  def call_option(user_selected)
     case user_selected
       when 1 then add_new_contact
       when 2 then modify_existing_contact
@@ -59,7 +60,9 @@ class CRM
   end
 
 
-  def modify_existing_contact(ider)
+  def modify_existing_contact
+    puts "Enter id of the guy you wanna change"
+    ider = gets.chomp.to_i
     person = Contact.find(ider)
     Contact.update(person)
   end
@@ -91,18 +94,16 @@ class CRM
   #   end
   # end
 
-  def self.delete_contact
-    puts "Who do you want to get rid of (enter id)?"
-    target = gets.chomp
-    Contact.delete_em(target)
+  def delete_contact
+    puts Contact.delete_em
   end
 
-  def self.display_all_contacts
-    Contact.all.inspect
+  def display_all_contacts
+    puts Contact.all.inspect
   end
 
   def search_by_attribute
-
+    puts Contact.find_by.inspect
   end
 
 
@@ -111,8 +112,9 @@ end
 
 # CRM.delete_contact
 # puts CRM.display_all_contacts
-
-CRM.modify_existing_contact(3)
+mine = CRM.new('Mine')
+# new_crm.modify_existing_contact
+# CRM.modify_existing_contact
 
 
 

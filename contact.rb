@@ -17,7 +17,7 @@ class Contact
   # This method should call the initializer,
   # store the newly created contact, and then return it
   # remember, we preface the method name with 'self.' if it is a class method
-  def self.create(first_name, last_name, email, note)
+  def self.create(first_name, last_name, email, note = nil)
     new_contact = Contact.new(first_name, last_name, email, note)
     @@contacts << new_contact
     return new_contact
@@ -85,6 +85,7 @@ class Contact
         return contacter
       end
     end
+    return false
   end
 
 
@@ -187,8 +188,13 @@ class Contact
 
   # This method should delete the contact
   # HINT: Check the Array class docs for built-in methods that might be useful here
-  def self.delete_em(target)
-    @@contacts.delete(target)
+  def self.delete_em
+    puts "Who do you want to get rid of? (input id)"
+    ider = gets.chomp.to_i
+    target = find(ider)
+
+
+    @@contacts.delete(target).inspect
   end
 
   # Feel free to add other methods here, if you need them.
@@ -204,7 +210,7 @@ johnny = Contact.create('Johnny', 'Jamstead', 'jjamstead@gmail.com', 'Hates Poke
 ronk = Contact.create('Ronk', 'Blaster', 'ronkronk@yahoo.com', 'Is a Pokemon')
 
 # Contact.changer(2, 'first_name', 'Blur')
-puts Contact.all[1]
+# puts Contact.all[1]
 
 
 # How can I get contact's email?
@@ -214,13 +220,13 @@ puts Contact.all[1]
 #
 #
 # puts '*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*'
-puts Contact.update(ronk)
-puts ronk.inspect
-
-guy = Contact.find(3)
-
-Contact.update(guy)
-puts ronk.inspect
+# puts Contact.update(ronk)
+# puts ronk.inspect
+#
+# guy = Contact.find(3)
+#
+# Contact.update(guy)
+# puts ronk.inspect
 #
 # puts betty.email # => 'bettymakes@gmail.com'
 # betty.note = 'Loves HTML & CSS'
